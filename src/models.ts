@@ -1,3 +1,11 @@
+type Status = "success" | "error";
+
+interface Response {
+    status: Status;
+    error?: string;
+    content?: any;
+}
+
 interface Arcade {
     id: string,
     name: string,
@@ -23,4 +31,4 @@ interface Player {
     assoc_cabinet: string,
 }
 
-export type {Arcade, Game, Cabinet, Player};
+export type {Response, Arcade, Game, Cabinet, Player};

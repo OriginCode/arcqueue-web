@@ -3,6 +3,7 @@ import {API_URL} from "../config";
 import {useEffect, useState} from "react";
 import {Listbox, ListboxItem} from "@heroui/react";
 import {Arcade, Cabinet} from "../models";
+import {unwrap_response} from "../utils";
 
 
 function ArcadePage() {
@@ -14,6 +15,7 @@ function ArcadePage() {
         let fetchArcade = async () => {
             await fetch(`${API_URL}/arcades/${arcadeId}`)
                 .then(res => res.json())
+                .then(unwrap_response)
                 .then(setArcade)
                 .catch(err => console.log(err));
         };
@@ -24,6 +26,7 @@ function ArcadePage() {
         let fetchCabinets = async () => {
             await fetch(`${API_URL}/arcades/${arcadeId}/cabinets`)
                 .then(res => res.json())
+                .then(unwrap_response)
                 .then(setCabinets)
                 .catch(err => console.log(err));
         };

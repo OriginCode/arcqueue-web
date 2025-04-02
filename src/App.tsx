@@ -6,6 +6,7 @@ import ArcadePage from "./pages/Arcade";
 import CabinetPage from "./pages/Cabinet";
 import {Arcade} from "./models";
 import {API_URL} from "./config";
+import {unwrap_response} from "./utils";
 
 
 function Index() {
@@ -17,6 +18,7 @@ function Index() {
         let fetchArcades = async () => {
             await fetch(`${API_URL}/arcades/search?name=${arcadeName}`)
                 .then(res => res.json())
+                .then(unwrap_response)
                 .then(setArcades)
                 .catch(err => console.log(err));
         };
