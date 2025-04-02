@@ -1,7 +1,7 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {API_URL} from "../config";
 import {useEffect, useState} from "react";
-import {Listbox, ListboxItem} from "@heroui/react";
+import {Button, Listbox, ListboxItem} from "@heroui/react";
 import {Arcade, Cabinet} from "../models";
 import {unwrap_response} from "../utils";
 
@@ -39,6 +39,7 @@ function ArcadePage() {
         <div className={"flex h-screen items-center justify-center flex-wrap max-w-screen-lg p-4"}>
             <div className={"flex flex-row justify-center items-start gap-x-2 flex-wrap max-w-screen-lg"}>
                 <div className={"flex flex-col flex-wrap"}>
+                    <Button onPress={() => navigate(-1)}>Back</Button>
                     <h1 className={"index text-xl"}>{arcade.name}</h1>
                     <p>{arcade.description}</p>
                 </div>
