@@ -1,3 +1,3 @@
-const API_URL = "http://localhost:8701/v1";
+const API_URL = "http://192.168.50.10:8701/v1";
 
 export {API_URL};

@@ -33,15 +33,16 @@ function ArcadePage() {
     let navigate = useNavigate();
 
     return (
-        <div className={"flex h-screen items-center justify-center"}>
-            <div className={"flex flex-row justify-center items-start gap-x-2"}>
-                <div className={"flex flex-col"}>
+        <div className={"flex h-screen items-center justify-center flex-wrap max-w-screen-lg p-4"}>
+            <div className={"flex flex-row justify-center items-start gap-x-2 flex-wrap max-w-screen-lg"}>
+                <div className={"flex flex-col flex-wrap"}>
                     <h1 className={"index text-xl"}>{arcade.name}</h1>
                     <p>{arcade.description}</p>
                 </div>
-                <Listbox className={"w-3/4 border-small px-2 py-2 rounded-small border-default-200 dark:border-default-100"}>
-                    {cabinets.map((cabinet: any) => (
-                        <ListboxItem onPress={() => navigate(`/cabinets/${cabinet.id}`)}>
+                <Listbox
+                    className={"w-3/4 border-small px-2 py-2 rounded-small border-default-200 dark:border-default-100 max-w-screen-lg"}>
+                    {cabinets.map((cabinet: Cabinet) => (
+                        <ListboxItem key={cabinet.id} onPress={() => navigate(`/cabinets/${cabinet.id}`)}>
                             {cabinet.name}
                         </ListboxItem>
                     ))}

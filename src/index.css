@@ -17,5 +17,6 @@ code {
 }
 
 .index {
-  font-family: 'BigBlue TerminalPlus', monospace;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
 }

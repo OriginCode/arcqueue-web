@@ -52,9 +52,9 @@ function CabinetPage() {
     let navigate = useNavigate();
 
     return (
-        <div className={"flex h-screen items-center justify-center"}>
-            <div className={"flex flex-col justify-center items-start gap-y-2"}>
-                <div className={"flex flex-row items-center justify-center gap-x-2"}>
+        <div className={"flex h-screen items-center justify-center flex-wrap max-w-screen-lg p-4"}>
+            <div className={"flex flex-col justify-center items-start gap-y-2 flex-wrap max-w-screen-lg"}>
+                <div className={"flex flex-row items-center justify-center gap-x-2 flex-wrap max-w-screen-lg"}>
                     <Button onPress={() => navigate(-1)}>Back</Button>
                     <div className={"flex flex-col"}>
                         <h1 className={"index text-xl"}>{cabinet.name}</h1>
@@ -68,8 +68,8 @@ function CabinetPage() {
                         <TableColumn>Player</TableColumn>
                     </TableHeader>
                     <TableBody emptyContent={"No players in queue."}>
-                        {players.map((player: any, idx: number) => (
-                            <TableRow>
+                        {players.map((player: Player, idx: number) => (
+                            <TableRow key={player.name}>
                                 <TableCell>{idx + 1}</TableCell>
                                 <TableCell>{player.name}</TableCell>
                             </TableRow>))}
