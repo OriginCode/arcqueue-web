@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 
 import ArcadePage from "./pages/Arcade";
 import CabinetPage from "./pages/Cabinet";
-import {Arcade} from "./models";
+import {APIResponse, Arcade} from "./models";
 import {API_URL} from "./config";
 import {unwrap_response} from "./utils";
 
@@ -17,10 +17,10 @@ function Index() {
     useEffect(() => {
         let fetchArcades = async () => {
             await fetch(`${API_URL}/arcades/search?name=${arcadeName}`)
-                .then(res => res.json())
+                .then(res => res.json() as Promise<APIResponse<Arcade[]>>)
                 .then(unwrap_response)
                 .then(setArcades)
-                .catch(err => console.log(err));
+                .catch(err => console.error(err));
         };
         fetchArcades();
     }, [arcadeName]);
@@ -31,11 +31,12 @@ function Index() {
         <div className={"flex h-screen items-center justify-center w-screen"}>
             <div className={"index flex flex-col items-center gap-y-2 w-fit"}>
                 <h1 className={"text-xl"}>ARCADE QUEUE</h1>
-                <Form onSubmit={() => {
-                    navigate(`/arcades/${arcadeId}/`);
-                }}>
+                <Form
+                    onSubmit={() => {
+                        navigate(`/arcades/${arcadeId}/`);
+                    }}>
                     <div className={"flex flex-auto gap-x-2"}>
-                        <Input label={"Enter Arcade ID"} onValueChange={setArcadeId}/>
+                        <Input isRequired={true} label={"Enter Arcade ID"} onValueChange={setArcadeId}/>
                         <Button type={"submit"} className={"h-auto"}>Go</Button>
                     </div>
                 </Form>
@@ -61,8 +62,10 @@ function App() {
         <HeroUIProvider navigate={navigate} useHref={useHref}>
             <Routes>
                 <Route index element={<Index/>}/>
-                <Route path={"arcades/:arcadeId/"} element={<ArcadePage/>}/>
-                <Route path={"cabinets/:cabinetId/"} element={<CabinetPage/>}/>
+                <Route path={"/arcades/:arcadeId/"}>
+                    <Route index  element={<ArcadePage/>}/>
+                    <Route path={"cabinets/:cabinetId"} element={<CabinetPage/>}/>
+                </Route>
             </Routes>
         </HeroUIProvider>
     );

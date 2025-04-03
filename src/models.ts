@@ -1,34 +1,34 @@
 type Status = "success" | "error";
 
-interface Response {
-    status: Status;
-    error?: string;
-    content?: any;
+type APIResponse<T> = {
+    status: Status,
+    error?: string,
+    content?: T,
 }
 
-interface Arcade {
+type Arcade = {
     id: string,
     name: string,
     description?: string,
     create_date: Date,
 }
 
-interface Game {
+type Game = {
     name: string,
     description: string,
 }
 
-interface Cabinet {
+type Cabinet = {
     id: string,
     game_name: string,
     name: string,
     assoc_arcade: string,
 }
 
-interface Player {
+type Player = {
     position: number,
     name: string,
     assoc_cabinet: string,
 }
 
-export type {Response, Arcade, Game, Cabinet, Player};
+export type {APIResponse, Arcade, Game, Cabinet, Player};
